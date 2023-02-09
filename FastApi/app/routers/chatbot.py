@@ -1,9 +1,16 @@
+from time import sleep
+
 from fastapi import APIRouter
 from fastapi import FastAPI, WebSocket
 from fastapi.responses import HTMLResponse
+from playsound import playsound
 
+import gi
+from app.admin.path import dir_path
 from app.services.chatbot.kakao_chatbot import KakaoChatbot
 from app.services.chatbot.kogpt2 import Kogpt2
+from app.services.chatbot.tts_bot import Tts
+from app.services.chatbot.utils.FindAnswerTest import FindAngserTest
 
 router = APIRouter()
 html = """
@@ -22,7 +29,7 @@ html = """
         </ul>
         <script>
 
-            var ws = new WebSocket("ws://localhost:8000/chatbot/sk-kogpt2");
+            var ws = new WebSocket("ws://localhost:8000/chatbot/chatbot-engine");
             
             ws.onmessage = function(event) {
                 var messages = document.getElementById('messages')
@@ -43,9 +50,12 @@ html = """
     </body>
 </html>
 """
+
+
 @router.get("/")
 async def get():
     return HTMLResponse(html)
+
 
 @router.websocket("/sk-kogpt2")
 async def websocket_endpoint(websocket: WebSocket):
@@ -56,11 +66,24 @@ async def websocket_endpoint(websocket: WebSocket):
         await websocket.send_text(f"보낸 메세지: {data}")
         await websocket.send_text(f"KoGPT2 챗봇의 답변: {output}")
 
+
 @router.websocket("/kakao-chatbot")
 async def websocket_endpoint(websocket: WebSocket):
     await websocket.accept()
     while True:
         data = await websocket.receive_text()
-        output = KakaoChatbot().chatbot(msg = data)
+        output = KakaoChatbot().chatbot(msg=data)
         await websocket.send_text(f"보낸 메세지: {data}")
         await websocket.send_text(f"카카오 챗봇의 답변: {output}")
+
+
+@router.websocket("/chatbot-engine")
+async def websocket_endpoint(websocket: WebSocket):
+    await websocket.accept()
+    while True:
+
+        data = await websocket.receive_text()
+        await websocket.send_text(f"보낸 메세지: {data}")
+        answer = FindAngserTest().exec(msg=data)
+        a= Tts().run(answer)
+        await websocket.send_text(f"챗봇 엔진의 답변: {answer}")

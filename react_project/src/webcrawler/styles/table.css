@@ -1,0 +1,20 @@
+
+body { background: #fff; }
+.bluetop {
+  border-collapse: collapse;
+  border-top: 3px solid #168;
+}  
+.bluetop th {
+  color: #168;
+  background: #f0f6f9;
+}
+.bluetop th, .bluetop td {
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+.bluetop th:first-child, .bluetop td:first-child {
+  border-left: 0;
+}
+.bluetop th:last-child, .bluetop td:last-child {
+  border-right: 0;
+}

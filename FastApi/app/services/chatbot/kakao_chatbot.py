@@ -158,8 +158,8 @@ class KakaoChatbot:
 
         # 결과 조회
         result = api.generate(prompt, max_tokens, temperature=0.3, top_p=0.85)
-        output = result['generations'][0]['text']
-        print(output)
+        #output = result['generations'][0]['text']
+        print(result)
 
     def chatbot(self, msg) -> str:
         # 필수 파라미터

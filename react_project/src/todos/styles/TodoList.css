@@ -1,0 +1,19 @@
+table.type1 {
+    width: 50%;
+  }
+  table.type1 th {
+
+    padding: 5px;
+    font-weight: bold;
+    text-align: center;
+    color: #fff;
+    background: #ce4869 ;
+  }
+  table.type1 td {
+    
+    text-align: left;
+    vertical-align: top;
+    border-bottom: 1px solid rgb(207, 194, 194);
+    padding: 1px;
+    background: #eee;
+  }

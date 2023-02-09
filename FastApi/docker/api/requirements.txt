@@ -51,7 +51,7 @@ gunicorn==20.0.4
 gTTS
 
 h11==0.13.0
-huggingface-hub==0.8.1
+huggingface-hub==0.10.1
 html5lib
 
 icecream
@@ -116,7 +116,7 @@ notebook==6.4.12
 
 opencv-python~=4.6.0.66
 openai
-
+vext.gi
 pandas
 pep8==1.7.1
 plotly==5
@@ -125,9 +125,9 @@ pymysql
 pytz
 pyjwt
 passlib
-playsound
+playsound==1.2.2
 prophet== 1.1.1
-pandas-datareader == 0.10.0
+pandas-datareader==0.10.0
 packaging==21.3
 pandocfilters==1.5.0
 parso==0.8.3
@@ -210,12 +210,10 @@ webencodings==0.5.1
 wget==3.2
 widgetsnbextension==3.6.1
 win-inet-pton
-
 yfinance==0.2.3
-
 zipp==3.8.0
 
 PyKakao
-
 pytorch-lightning
 websockets
+seqeval

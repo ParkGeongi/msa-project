@@ -217,3 +217,9 @@ PyKakao
 pytorch-lightning
 websockets
 seqeval
+
+tensorboardX
+torchgeometry
+yolov5==7.0.8
+
+spec

@@ -5,7 +5,6 @@ from fastapi import FastAPI, WebSocket
 from fastapi.responses import HTMLResponse
 from playsound import playsound
 
-import gi
 from app.admin.path import dir_path
 from app.services.chatbot.kakao_chatbot import KakaoChatbot
 from app.services.chatbot.kogpt2 import Kogpt2
@@ -85,5 +84,4 @@ async def websocket_endpoint(websocket: WebSocket):
         data = await websocket.receive_text()
         await websocket.send_text(f"보낸 메세지: {data}")
         answer = FindAngserTest().exec(msg=data)
-        a= Tts().run(answer)
         await websocket.send_text(f"챗봇 엔진의 답변: {answer}")
